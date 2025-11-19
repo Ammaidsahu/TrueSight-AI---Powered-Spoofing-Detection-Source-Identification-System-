@@ -1,0 +1,11 @@
+/* Additional App-specific styles */
+.App {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Ensure content is above background */
+.App > * {
+  position: relative;
+  z-index: 1;
+}

@@ -1,0 +1,8 @@
+This directory will contain trained model files.
+
+Placeholder for:
+- audio_model.pth
+- liveness_model.pth
+- lipsync_model.pth
+- Other trained model weights
+

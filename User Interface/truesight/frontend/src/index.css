@@ -1,0 +1,319 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', monospace;
+  background: #0a0a0a;
+  color: #00ff95;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  background: #0a0a0a;
+}
+
+/* Matrix Background */
+.matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.matrix-line {
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, #00ff95, transparent);
+  opacity: 0.1;
+  animation: matrix-rain 20s linear infinite;
+}
+
+/* Scan Line Effect */
+.scan-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ff95, transparent);
+  animation: scan-line 3s linear infinite;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Glowing Text */
+.glow-text {
+  text-shadow: 
+    0 0 10px currentColor,
+    0 0 20px currentColor,
+    0 0 30px currentColor;
+}
+
+.glow-text-blue {
+  text-shadow: 
+    0 0 10px #00c8ff,
+    0 0 20px #00c8ff,
+    0 0 30px #00c8ff;
+}
+
+.glow-text-green {
+  text-shadow: 
+    0 0 10px #00ff95,
+    0 0 20px #00ff95,
+    0 0 30px #00ff95;
+}
+
+/* Cyber Card */
+.cyber-card {
+  background: rgba(10, 10, 10, 0.8);
+  border: 1px solid rgba(0, 255, 149, 0.3);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 149, 0.1), transparent);
+  animation: scan-line 3s linear infinite;
+}
+
+.cyber-card:hover {
+  border-color: rgba(0, 255, 149, 0.6);
+  box-shadow: 
+    0 0 20px rgba(0, 255, 149, 0.3),
+    inset 0 0 20px rgba(0, 255, 149, 0.1);
+}
+
+/* Cyber Button */
+.cyber-button {
+  background: rgba(0, 255, 149, 0.1);
+  border: 2px solid #00ff95;
+  color: #00ff95;
+  padding: 0.75rem 1.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cyber-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(0, 255, 149, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.cyber-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.cyber-button:hover {
+  background: rgba(0, 255, 149, 0.2);
+  box-shadow: 
+    0 0 20px rgba(0, 255, 149, 0.6),
+    0 0 40px rgba(0, 255, 149, 0.4),
+    inset 0 0 20px rgba(0, 255, 149, 0.1);
+  transform: scale(1.05);
+}
+
+.cyber-button:active {
+  transform: scale(0.98);
+}
+
+.cyber-button-blue {
+  border-color: #00c8ff;
+  color: #00c8ff;
+  background: rgba(0, 200, 255, 0.1);
+}
+
+.cyber-button-blue:hover {
+  box-shadow: 
+    0 0 20px rgba(0, 200, 255, 0.6),
+    0 0 40px rgba(0, 200, 255, 0.4),
+    inset 0 0 20px rgba(0, 200, 255, 0.1);
+}
+
+.cyber-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Terminal Input */
+.terminal-input {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 255, 149, 0.3);
+  color: #00ff95;
+  padding: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.terminal-input:focus {
+  border-color: #00ff95;
+  box-shadow: 
+    0 0 10px rgba(0, 255, 149, 0.5),
+    inset 0 0 10px rgba(0, 255, 149, 0.1);
+}
+
+/* Terminal Window */
+.terminal-window {
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(0, 255, 149, 0.3);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  overflow-y: auto;
+  position: relative;
+}
+
+.terminal-window::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ff95, transparent);
+  animation: scan-line 3s linear infinite;
+}
+
+/* Typing Animation */
+.typing-animation {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #00ff95;
+  animation: typing 3s steps(40, end), blink 1s step-end infinite;
+}
+
+/* Loading Ring */
+.loading-ring {
+  width: 60px;
+  height: 60px;
+  border: 3px solid rgba(0, 255, 149, 0.3);
+  border-top-color: #00ff95;
+  border-radius: 50%;
+  animation: rotate-ring 1s linear infinite;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 149, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 149, 0.5);
+}
+
+/* ASCII Art Styles */
+.ascii-art {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  line-height: 1.2;
+  color: #00ff95;
+  white-space: pre;
+  text-shadow: 0 0 10px #00ff95;
+}
+
+/* Keyframe Animations */
+@keyframes matrix-rain {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes rotate-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
